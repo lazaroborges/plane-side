@@ -1,0 +1,12 @@
+{% extends "layout.html" %} {% block title %} Log In {% endblock %} {% block main %}
+<div class="form-group">
+
+    Your API-KEY is <b>{{ key.key }}</b>. You have <b>{{ key.requests }}</b> requests available this month.
+
+    <br><br><br>
+    <br>How to use our API: <br> Make a URL Request to <br> http://127.0.0.1:5000/api/?key={Your API-KEY}&iata={IATA-Code for the Airport you Want} <br>The output will be a JSON with {"IATA Code": "Best Side"}
+
+</div>
+<script>
+</script>
+{% endblock %}

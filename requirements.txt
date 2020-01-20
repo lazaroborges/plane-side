@@ -1,0 +1,14 @@
+cs50
+Flask
+Flask-Session
+requests
+Click
+gunicorn
+itsdangerous
+Jinja2
+MarkupSafe
+Werkzeug
+flask_wtf
+wtforms
+wtforms_sqlalchemy
+secrets

@@ -1,0 +1,31 @@
+{% extends "layout.html" %} {% block title %} Log In {% endblock %} {% block main %}
+
+<body>
+    <form action="/search" method="POST">
+        {{ form.csrf_token }} {{ form.country }} {{ form.airport }}
+        <input type="submit">
+    </form>
+    <script>
+        var country_select = document.getElementById("country");
+        var airport_select = document.getElementById("airport");
+
+        country_select.onchange = function() {
+
+            country = country_select.value;
+
+            fetch('/airport/' + country).then(function(response) {
+
+                response.json().then(function(data) {
+                    var optionHTML = '';
+
+                    for (var airport of data.airports) {
+                        optionHTML += '<option value="' + airport.id + '">' + airport.name + '</option>';
+                    }
+
+                    airport_select.innerHTML = optionHTML;
+                })
+
+            });
+        }
+    </script>
+    {% endblock %}
