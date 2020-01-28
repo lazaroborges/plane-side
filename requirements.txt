@@ -12,3 +12,5 @@ flask_wtf
 wtforms
 wtforms_sqlalchemy
 secrets
+flask_sqlalchemy
+flask_session

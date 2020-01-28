@@ -37,8 +37,8 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 # Configure CS50 Library to use SQLite database
-dbz = SQL("sqlite:///plane-side.db")
-db = SQLAlchemy(app)
+dbz = SQL("sqlite:///plane-side.db") # CS50 SQLite Flavor COnnection 
+db = SQLAlchemy(app) # Standard SQLite Alchemy Connection
 
 class Country(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -114,14 +114,14 @@ def apirequest():
     key = request.args.get('key')
     iata = request.args.get('iata')
     checkedkey = checkkey(key)
-    #print (checkedkey,key, iata, "-=-----------------------====================")
+    
     if checkedkey is 3:        
         return jsonify(str("Invalid Key."))
     elif checkedkey is 2: 
         return jsonify(str("No more requests available."))
     else: 
         if checkairport(iata) == False:
-            return jsonify({f"{iata}": "Airport Not Found"})
+            return jsonify({f"{iata}": "Airport Not Found"}), 422
         else: 
             best = bestside(dbz.execute(f"SELECT (id) FROM Country WHERE iata='{iata}';")[0]["id"])
 
@@ -135,7 +135,7 @@ def apirequest():
             elif best == 3: 
                 return jsonify({f"{iata}": "tie"})
             else: 
-                return jsonify({f"{iata}": "no votes available yet!"})
+                return jsonify({f"{iata}": "no votes available yet!"}), 422
 
     
 
