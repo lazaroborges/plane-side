@@ -236,13 +236,12 @@ def register():
                 usernameslist.append(x["username"])
 
             if request.form.get("password") != request.form.get("confirmation"):
-                return apology ("Type Same Password Humpty Dumpty!", 400)
+                return apology ("Type Same Password!", 400)
             elif username == "":
-                return apology ("Empty Username Humpty Dumpty!", 400)
+                return apology ("Empty Username!", 400)
             elif password == "" or confirmation == "":
-                return apology ("Empty Password Humpty Dumpty!", 400)
+                return apology ("Empty Password!", 400)
             elif username in usernameslist:
-                print ("line 224 - the line of truth of a poet once forgotten by his own people")
                 return apology ("Username already in use", 400)
             else:
                 hashed = generate_password_hash(password, method='pbkdf2:sha256', salt_length=8)
